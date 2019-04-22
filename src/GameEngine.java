@@ -30,7 +30,7 @@ public class GameEngine {
         oPlayer.Bibit.add(8,new Tanaman(7,5,98,38,75,86,3,"kentang","sayuran"));
         oPlayer.Bibit.add(9,new Tanaman(8,5,100,40,78,100,2,"melon","buah"));
         oPlayer.Bibit.add(10,new Tanaman(9,5,95,28,80,80,5,"buncis","sayuran"));
-        oPlayer.Bibit.add(11,new Tanaman(10,5,96,60,80,100,1,"pear","buah"));
+        oPlayer.Bibit.add(11,new Tanaman(10,5,96,60,80,100,2,"pear","buah"));
         oPlayer.Bibit.add(12,new Tanaman(11,6,102,48,83,105,4,"tomat","sayuran"));
         oPlayer.Bibit.add(13,new Tanaman(12,6,107,33,84,106,3,"semangka","buah"));
         oPlayer.Bibit.add(14,new Tanaman(13, 6,102,50,88,100,3,"alpukat","buah"));
