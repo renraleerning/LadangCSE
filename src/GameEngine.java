@@ -59,6 +59,7 @@ public class GameEngine {
                 case 1 :
                     break;
                 case 2:
+                    j=0;
                     for (Tanaman i:oPlayer.arrBibit)
                     {
                         j++;
@@ -71,6 +72,8 @@ public class GameEngine {
                         oPlayer.arrBibit.get(input2).printDeskripsi();
                         System.out.println("\nBeli dengan jumlah : "); input3 = in.nextInt();
                         oPlayer.beliBibit(input2,input3);
+                    }else{
+                        System.out.println("tanaman tidak ditemukan");
                     }
                     break;
 
