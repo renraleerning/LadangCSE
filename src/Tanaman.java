@@ -15,7 +15,7 @@ public class Tanaman {
     }
 
     public void printTanaman(){
-        System.out.println(nama_tanaman+"(Harga Bibit:"+hargaB+" Harga Jual:"+hargaJ+") dimiliki "+jumlah_bibit+" bibit");
+        System.out.println(nama_tanaman+" ("+jumlah_bibit+" bibit)");
     }
     public void printDeskripsi(){
         System.out.println("Nama             : "+nama_tanaman);

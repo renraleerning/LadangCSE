@@ -7,6 +7,7 @@ public class GameEngine {
     public void mulai () {
         boolean st=false;
         int input, input2, input3;
+        int j=0;
         System.out.println("Masukkan Nama Anda :");
         Scanner in = new Scanner(System.in);
         String ngaran = in.nextLine();
@@ -45,9 +46,12 @@ public class GameEngine {
         oPlayer.arrBibit.add(30,new Tanaman(29,10,160,50,177,162,5,"zaitun"));
         oPlayer.arrBibit.add(31,new Tanaman(30,10,170,40,187,156,5,"kurma"));
 
+        //buat ladang
+        oPlayer.arrPetak.add(0,new Ladang(1,0));
+        for (j=1;j<9;j++){
+            oPlayer.arrPetak.add(j,new Ladang(j+1,(j*3/2)*500));
+        }
         //
-        int j=0;
-
         do{
             System.out.println("Hai "+oPlayer.nama+" apa yang akan kamu lakukan?");
             oPlayer.printStatus();
@@ -63,16 +67,19 @@ public class GameEngine {
                     for (Tanaman i:oPlayer.arrBibit)
                     {
                         j++;
-                        System.out.print(j+". ");i.printTanaman();
+                        if (i.batasLv<=oPlayer.level){
+                            System.out.print(j+". ");i.printTanaman();
+                        }else {
+                            break;
+                        }
+
                     }
                     System.out.println("0. cancel");
                     System.out.println("masukkan pilihan : "); input2 = in.nextInt();
                     input2--;
                     if (input2>=0&&input2<32){
-                        oPlayer.arrBibit.get(input2).printDeskripsi();
-                        System.out.println("\nBeli dengan jumlah : "); input3 = in.nextInt();
-                        oPlayer.beliBibit(input2,input3);
-                    }else{
+                        oPlayer.beliBibit(input2);
+                    }else if (input2!=-1){
                         System.out.println("tanaman tidak ditemukan");
                     }
                     break;

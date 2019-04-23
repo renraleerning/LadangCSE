@@ -24,4 +24,7 @@ public class Ladang {
             }
         }
     }
+    public void printLadang(){
+
+    }
 }
