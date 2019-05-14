@@ -70,4 +70,11 @@ public class Player {
 
         }
     }
+    public void siramLadang(int index){
+        if (arrPetak.get(index).status==2){
+            arrPetak.get(index).status=1;
+        }else {
+            System.out.println("invalid");
+        }
+    }
 }

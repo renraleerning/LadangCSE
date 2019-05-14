@@ -38,7 +38,6 @@ public class Thread1 extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //oPlayer.level++;
         refresh();
     }
 }
@@ -53,11 +52,11 @@ class MyGUI extends JPanel {
         //border berwarna hitam di panel
         setBorder(BorderFactory.createLineBorder(Color.black));
         posX[0]=10;
-        posY[0]=100;
+        posY[0]=150;
         for (int i=1;i<10;i++){
             if (i==5){
                 posX[i]=posX[0];
-                posY[i]=220;
+                posY[i]=posY[0]+120;
             }else{
                 posX[i]=posX[i-1]+120;
                 posY[i]=posY[i-1];
@@ -71,14 +70,20 @@ class MyGUI extends JPanel {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.setFont(new Font("Monospaced", Font.BOLD, 15));
-        g.drawString("Hai "+oPlayer.nama+" apa yang akan kamu lakukan?",10,10);
-        g.drawString("Level : "+oPlayer.level,10,20);
-        g.drawString("Uang  : "+oPlayer.uang,10,30);
-        g.drawString("EXP   : "+oPlayer.exp+ "(" + oPlayer.morexp + "exp lagi untuk nail lv)",10,40);
+        g.setFont(new Font("roboto", Font.BOLD, 15));
+        g.drawString("Hai "+oPlayer.nama+" apa yang akan kamu lakukan?",10,40);
+        g.drawString("Level : "+oPlayer.level,10,70);
+        g.drawString("Uang  : "+oPlayer.uang,10,90);
+        g.drawString("EXP   : "+oPlayer.exp+ "(" + oPlayer.morexp + "exp lagi untuk nail lv)",10,110);
 
         for (int i=0;i<10;i++){
-        g.drawRect(posX[i],posY[i],100,100);
+            g.drawRect(posX[i],posY[i],100,100);
+            g.drawString("["+i+"]",posX[i]+3,posY[i]+15);
+            if(oPlayer.arrPetak.get(i).islocked){
+                g.drawString("Terkunci",posX[i]+20,posY[i]+45);
+            }else{
+                g.drawString("Kosong",posX[i]+20,posY[i]+45);
+            }
         }
     }
 }

@@ -9,16 +9,6 @@ public class GameEngine {
         Scanner in = new Scanner(System.in);
         String ngaran = in.nextLine();
         oPlayer = new Player(ngaran);
-        Thread1 t1= new Thread1();
-        Thread1.oPlayer=oPlayer;
-        MyGUI.oPlayer=oPlayer;
-        t1.start();
-    }
-    public void mulai () {
-        Scanner in = new Scanner(System.in);
-        boolean st=false;
-        int input, input2, input3;
-        int j=0;
 
         //simpan bibit;
         oPlayer.arrBibit.add(0,new Tanaman(1,1,60,25,30,24,3,"kol"));
@@ -55,20 +45,49 @@ public class GameEngine {
         oPlayer.arrBibit.add(31,new Tanaman(30,10,170,40,187,156,5,"kurma"));
 
         //buat ladang
-        oPlayer.arrPetak.add(0,new Ladang(1,0));
-        for (j=1;j<9;j++){
-            oPlayer.arrPetak.add(j,new Ladang(j+1,(j*3/2)*500));
+        oPlayer.arrPetak.add(0,new Ladang(1,0, false));
+        for (int j=1;j<10;j++){
+            oPlayer.arrPetak.add(j,new Ladang(j+1,(j*3/2)*500, true));
         }
+        //buat thread dan GUI
+        MyGUI.oPlayer=oPlayer;
+        Thread1 t1= new Thread1();
+        Thread1.oPlayer=oPlayer;
+        t1.start();
+    }
+    public void mulai () {
+        Scanner in = new Scanner(System.in);
+        boolean st=false;
+        int input, input2, input3;
+        int j=0;
+
+
         //
         do{
             System.out.println("Hai "+oPlayer.nama+" apa yang akan kamu lakukan?");
             oPlayer.printStatus();
             System.out.println("\nMenu : ");
-            System.out.println("1. Lihat Ladang");
-            System.out.println("2. Beli bibit");
+            System.out.println("1. Tanam");
+            System.out.println("2. Siram");
+            System.out.println("3. Panen");
+            System.out.println("4. Bersihkan ladang");
+            System.out.println("5. Buka Ladang");
+            System.out.println("6. Beri Fertilizer");
+            System.out.println("7. Beli Bibit");
+            System.out.println("8. Beli Item");
+            System.out.println("9. Beli Perabot");
             System.out.println("Masukkan Pilihan : "); input=in.nextInt();
             switch (input){
                 case 1 :
+                    System.out.println("(99 untuk keluar) \nSiram Ladang No : ");
+                    do{
+                        input2=in.nextInt();
+                        if (input2>-1 && input2<10){
+                            oPlayer.siramLadang(input2);
+                        }else{
+                            System.out.println("Invalid");
+                        }
+                    }while (input2!=99);
                     break;
                 case 2:
                     j=0;
