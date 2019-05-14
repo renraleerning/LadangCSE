@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Player {
-    int level = 1, uang = 10000, exp = 0, morexp = 200;
+    int level = 1, uang = 100, exp = 0, morexp = 200;
     String nama;
     ArrayList<Tanaman> arrBibit = new ArrayList();
     ArrayList<Ladang> arrPetak = new ArrayList();
@@ -74,6 +74,17 @@ public class Player {
         if (arrPetak.get(index).status==2){
             arrPetak.get(index).status=1;
         }else {
+            System.out.println("invalid");
+        }
+    }
+    //indexl=index ladang indext=index bibit/tanaman
+    public void tanam(int indexl , int indext){
+        if (arrPetak.get(indexl).status==0 && !arrPetak.get(indexl).islocked && arrBibit.get(indext).jumlah_bibit>0){
+            arrPetak.get(indexl).status=1;
+            arrPetak.get(indexl).waktu=arrBibit.get(indext).lama_panen;
+            arrPetak.get(indexl).tanaman=arrBibit.get(indext).nama_tanaman;
+            arrPetak.get(indexl).jumlah=arrBibit.get(indext).jumlah_panen;
+        }else{
             System.out.println("invalid");
         }
     }

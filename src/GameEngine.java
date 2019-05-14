@@ -67,18 +67,18 @@ public class GameEngine {
             System.out.println("Hai "+oPlayer.nama+" apa yang akan kamu lakukan?");
             oPlayer.printStatus();
             System.out.println("\nMenu : ");
-            System.out.println("1. Tanam");
-            System.out.println("2. Siram");
-            System.out.println("3. Panen");
-            System.out.println("4. Bersihkan ladang");
+            System.out.println("1. Tanam                6. Beri Fertilizer");
+            System.out.println("2. Siram                7. Beli Bibit");
+            System.out.println("3. Panen                8. Beli Item");
+            System.out.println("4. Bersihkan ladang     9. Beli Perabot");
             System.out.println("5. Buka Ladang");
-            System.out.println("6. Beri Fertilizer");
-            System.out.println("7. Beli Bibit");
-            System.out.println("8. Beli Item");
-            System.out.println("9. Beli Perabot");
+            System.out.println("");
             System.out.println("Masukkan Pilihan : "); input=in.nextInt();
             switch (input){
                 case 1 :
+
+                    break;
+                case 2:
                     System.out.println("(99 untuk keluar) \nSiram Ladang No : ");
                     do{
                         input2=in.nextInt();
@@ -89,7 +89,8 @@ public class GameEngine {
                         }
                     }while (input2!=99);
                     break;
-                case 2:
+
+                case 7 :
                     j=0;
                     for (Tanaman i:oPlayer.arrBibit)
                     {
@@ -110,7 +111,6 @@ public class GameEngine {
                         System.out.println("tanaman tidak ditemukan");
                     }
                     break;
-
                 case 99 :
                     break;
             }
