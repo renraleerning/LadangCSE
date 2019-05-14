@@ -84,7 +84,9 @@ public class GameEngine {
                             oPlayer.tampilkan_bibit();
                             System.out.println("masukkan pilihan : "); input3 = in.nextInt();
                             input3--;
-                            oPlayer.tanam(input2,input3);
+                            if (input3>=0&&input3<32){
+                                oPlayer.tanam(input2,input3);
+                            }
                         }else {
                             System.out.println("invalid!");
                         }
@@ -104,7 +106,16 @@ public class GameEngine {
                 case 3 :
                     System.out.println("panen ladang No : ");
                     System.out.println("masukkan pilihan : "); input2 = in.nextInt();
-                    oPlayer.panen(input2);
+                    if (input2>-1 && input2<10) {
+                        oPlayer.panen(input2);
+                    }
+                    break;
+                case 4 :
+                    System.out.println("panen ladang No : ");
+                    System.out.println("masukkan pilihan : "); input2 = in.nextInt();
+                    if (input2>-1 && input2<10){
+                    oPlayer.arrPetak.get(input2).status=0;
+                    }
                     break;
                 case 7 :
                     oPlayer.tampilkan_bibit();

@@ -1,9 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimerTask;
 
 public class Thread1 extends Thread {
-    private  MyGUI gui;
-    private boolean hama;
     private int rand;
     public static Player oPlayer;
     //Buat frame
@@ -20,17 +23,29 @@ public class Thread1 extends Thread {
         //set ukuran panel dalam pixel: lebar, tinggi
         f.setSize(800,600);
         f.setVisible(true);
+
+        Timer timer = new Timer(1000, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                refresh();
+                run();
+            }
+        });
+        timer.start();
+        
     }
     public Thread1(){
     createAndShowGUI();
     }
 
     private void refresh(){
-        f.getContentPane().removeAll();
-        //f.getContentPane().invalidate();
+        f.getContentPane().remove(g);
+        f.getContentPane().invalidate();
         f.getContentPane().add(g);
         f.getContentPane().revalidate();
         f.repaint();
+
     }
 
     public void run() {
@@ -40,7 +55,7 @@ public class Thread1 extends Thread {
 //            e.printStackTrace();
 //        }
         for (int i=0;i<10;i++){
-            if (oPlayer.arrPetak.get(i).waktu%20==0 && oPlayer.arrPetak.get(i).status!=0 && !oPlayer.arrPetak.get(i).islocked){
+            if (oPlayer.arrPetak.get(i).status!=0 && !oPlayer.arrPetak.get(i).islocked){
                 oPlayer.arrPetak.get(i).waktu--;
                 if (oPlayer.arrPetak.get(i).status==1 && oPlayer.arrPetak.get(i).waktu%20==0){
                     rand=(int)(Math.random() * ((100 - 5) + 1)) + 5;
@@ -58,7 +73,7 @@ public class Thread1 extends Thread {
                 }
             }
         }
-        refresh();
+        //refresh();
     }
 }
 
@@ -105,12 +120,16 @@ class MyGUI extends JPanel {
                 if (oPlayer.arrPetak.get(i).status==0){
                     g.drawString("Kosong",posX[i]+20,posY[i]+45);
                 }else{
-                    g.drawString(oPlayer.arrPetak.get(i).tanaman,posX[i]+20,posY[i]+42);
+                    g.drawString(oPlayer.arrPetak.get(i).tanaman,posX[i]+20,posY[i]+40);
                 }
                     if(oPlayer.arrPetak.get(i).status==1){
-                    g.drawString(oPlayer.arrPetak.get(i).waktu+"s",posX[i]+20,posY[i]+48);
+                    g.drawString(oPlayer.arrPetak.get(i).waktu+"s",posX[i]+40,posY[i]+60);
                 }else if (oPlayer.arrPetak.get(i).status==2){
-                        g.drawString("(layu)",posX[i]+20,posY[i]+48);
+                        g.drawString("(layu)",posX[i]+40,posY[i]+60);
+                    }else if (oPlayer.arrPetak.get(i).status==4){
+                        g.drawString("(matang)",posX[i]+40,posY[i]+60);
+                    }else if (oPlayer.arrPetak.get(i).status==5){
+                        g.drawString("mati",posX[i]+40,posY[i]+60);
                     }
             }
         }

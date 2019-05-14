@@ -86,6 +86,7 @@ public class Player {
             arrPetak.get(indexl).jumlah=arrBibit.get(indext).jumlah_panen;
             arrPetak.get(indexl).exp_panen=arrBibit.get(indext).exp_panen;
             arrPetak.get(indexl).hargabuah=arrBibit.get(indexl).hargaJ;
+            arrBibit.get(indext).jumlah_bibit--;
         }else{
             System.out.println("invalid");
         }
@@ -106,7 +107,7 @@ public class Player {
     }
     public void panen(int indexl){
         if (arrPetak.get(indexl).status==4){
-            exp=exp+arrPetak.get(indexl).exp_panen;
+            dapatExp(arrPetak.get(indexl).exp_panen);
             uang=uang+(arrPetak.get(indexl).jumlah*arrPetak.get(indexl).hargabuah);
             arrPetak.get(indexl).status=0;
         }
