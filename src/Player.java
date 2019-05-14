@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Player {
-    int level = 10, uang = 10000, exp = 0, morexp = 200;
+    int level = 1, uang = 10000, exp = 0, morexp = 200;
     String nama;
     ArrayList<Tanaman> arrBibit = new ArrayList();
     ArrayList<Ladang> arrPetak = new ArrayList();
@@ -21,6 +21,7 @@ public class Player {
         if (arrBibit.get(index).batasLv <= level) {
             if (arrBibit.get(index).hargaB*jumlah <= uang) {
                 arrBibit.get(index).jumlah_bibit = +jumlah;
+                uang=uang-arrBibit.get(index).hargaB*jumlah;
                 System.out.println("Bibit Telah ditambahkan");
             } else {
                 System.out.println("uang tidak mencukupi");

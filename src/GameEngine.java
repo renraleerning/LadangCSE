@@ -2,16 +2,24 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class GameEngine {
-    Player oPlayer;
+    static Player oPlayer;
 
-    public void mulai () {
-        boolean st=false;
-        int input, input2, input3;
-        int j=0;
+    public GameEngine(){
         System.out.println("Masukkan Nama Anda :");
         Scanner in = new Scanner(System.in);
         String ngaran = in.nextLine();
         oPlayer = new Player(ngaran);
+        Thread1 t1= new Thread1();
+        Thread1.oPlayer=oPlayer;
+        MyGUI.oPlayer=oPlayer;
+        t1.start();
+    }
+    public void mulai () {
+        Scanner in = new Scanner(System.in);
+        boolean st=false;
+        int input, input2, input3;
+        int j=0;
+
         //simpan bibit;
         oPlayer.arrBibit.add(0,new Tanaman(1,1,60,25,30,24,3,"kol"));
         oPlayer.arrBibit.add(1,new Tanaman(2,2,65,35,40,68,2,"nanas"));
@@ -92,8 +100,8 @@ public class GameEngine {
     }
 
     public static void main(String[] args) {
-
         GameEngine ge = new GameEngine();
         ge.mulai();
+
     }
 }
