@@ -76,7 +76,19 @@ public class GameEngine {
             System.out.println("Masukkan Pilihan : "); input=in.nextInt();
             switch (input){
                 case 1 :
-
+                    System.out.println("tanam di ladang nomor : ");
+                    input2=in.nextInt();
+                    if (input2>-1&&input2<10){
+                        if (!oPlayer.arrPetak.get(input2).islocked && oPlayer.arrPetak.get(input2).status==0){
+                            System.out.println("tanam dengan bibit : ");
+                            oPlayer.tampilkan_bibit();
+                            System.out.println("masukkan pilihan : "); input3 = in.nextInt();
+                            input3--;
+                            oPlayer.tanam(input2,input3);
+                        }else {
+                            System.out.println("invalid!");
+                        }
+                    }
                     break;
                 case 2:
                     System.out.println("(99 untuk keluar) \nSiram Ladang No : ");
@@ -89,20 +101,13 @@ public class GameEngine {
                         }
                     }while (input2!=99);
                     break;
-
+                case 3 :
+                    System.out.println("panen ladang No : ");
+                    System.out.println("masukkan pilihan : "); input2 = in.nextInt();
+                    oPlayer.panen(input2);
+                    break;
                 case 7 :
-                    j=0;
-                    for (Tanaman i:oPlayer.arrBibit)
-                    {
-                        j++;
-                        if (i.batasLv<=oPlayer.level){
-                            System.out.print(j+". ");i.printTanaman();
-                        }else {
-                            break;
-                        }
-
-                    }
-                    System.out.println("0. cancel");
+                    oPlayer.tampilkan_bibit();
                     System.out.println("masukkan pilihan : "); input2 = in.nextInt();
                     input2--;
                     if (input2>=0&&input2<32){

@@ -3,7 +3,8 @@ import java.awt.*;
 
 public class Thread1 extends Thread {
     private  MyGUI gui;
-
+    private boolean hama;
+    private int rand;
     public static Player oPlayer;
     //Buat frame
     private static JFrame f = new JFrame("Ladang.CSE");
@@ -33,10 +34,29 @@ public class Thread1 extends Thread {
     }
 
     public void run() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        for (int i=0;i<10;i++){
+            if (oPlayer.arrPetak.get(i).waktu%20==0 && oPlayer.arrPetak.get(i).status!=0 && !oPlayer.arrPetak.get(i).islocked){
+                oPlayer.arrPetak.get(i).waktu--;
+                if (oPlayer.arrPetak.get(i).status==1 && oPlayer.arrPetak.get(i).waktu%20==0){
+                    rand=(int)(Math.random() * ((100 - 5) + 1)) + 5;
+                    if (rand>50){
+                        oPlayer.arrPetak.get(i).status=2;
+                    }
+                }else if (oPlayer.arrPetak.get(i).status==2 && oPlayer.arrPetak.get(i).waktu%20==0){
+                    oPlayer.arrPetak.get(i).status=5;
+                }
+                if (oPlayer.arrPetak.get(i).waktu<=0&&(oPlayer.arrPetak.get(i).status==1||oPlayer.arrPetak.get(i).status==2||oPlayer.arrPetak.get(i).status==3)){
+                    oPlayer.arrPetak.get(i).status=4;
+                    oPlayer.arrPetak.get(i).waktu=100;
+                }else if (oPlayer.arrPetak.get(i).status==4&&oPlayer.arrPetak.get(i).waktu<=0){
+                    oPlayer.arrPetak.get(i).status=5;
+                }
+            }
         }
         refresh();
     }
@@ -82,7 +102,16 @@ class MyGUI extends JPanel {
             if(oPlayer.arrPetak.get(i).islocked){
                 g.drawString("Terkunci",posX[i]+20,posY[i]+45);
             }else{
-                g.drawString("Kosong",posX[i]+20,posY[i]+45);
+                if (oPlayer.arrPetak.get(i).status==0){
+                    g.drawString("Kosong",posX[i]+20,posY[i]+45);
+                }else{
+                    g.drawString(oPlayer.arrPetak.get(i).tanaman,posX[i]+20,posY[i]+42);
+                }
+                    if(oPlayer.arrPetak.get(i).status==1){
+                    g.drawString(oPlayer.arrPetak.get(i).waktu+"s",posX[i]+20,posY[i]+48);
+                }else if (oPlayer.arrPetak.get(i).status==2){
+                        g.drawString("(layu)",posX[i]+20,posY[i]+48);
+                    }
             }
         }
     }

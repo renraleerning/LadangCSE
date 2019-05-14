@@ -79,13 +79,36 @@ public class Player {
     }
     //indexl=index ladang indext=index bibit/tanaman
     public void tanam(int indexl , int indext){
-        if (arrPetak.get(indexl).status==0 && !arrPetak.get(indexl).islocked && arrBibit.get(indext).jumlah_bibit>0){
+        if (arrBibit.get(indext).jumlah_bibit>0){
             arrPetak.get(indexl).status=1;
             arrPetak.get(indexl).waktu=arrBibit.get(indext).lama_panen;
             arrPetak.get(indexl).tanaman=arrBibit.get(indext).nama_tanaman;
             arrPetak.get(indexl).jumlah=arrBibit.get(indext).jumlah_panen;
+            arrPetak.get(indexl).exp_panen=arrBibit.get(indext).exp_panen;
+            arrPetak.get(indexl).hargabuah=arrBibit.get(indexl).hargaJ;
         }else{
             System.out.println("invalid");
+        }
+    }
+    public void tampilkan_bibit(){
+        int j=0;
+        for (Tanaman i:arrBibit)
+        {
+            j++;
+            if (i.batasLv<=level){
+                System.out.print(j+". ");i.printTanaman();
+            }else {
+                break;
+            }
+
+        }
+        System.out.println("0. cancel");
+    }
+    public void panen(int indexl){
+        if (arrPetak.get(indexl).status==4){
+            exp=exp+arrPetak.get(indexl).exp_panen;
+            uang=uang+(arrPetak.get(indexl).jumlah*arrPetak.get(indexl).hargabuah);
+            arrPetak.get(indexl).status=0;
         }
     }
 }
