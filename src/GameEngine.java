@@ -93,8 +93,8 @@ public class GameEngine {
                     }
                     break;
                 case 2:
-                    System.out.println("(99 untuk keluar) \nSiram Ladang No : ");
                     do{
+                        System.out.println("Siram Ladang No 0-9 (99 untuk keluar): ");
                         input2=in.nextInt();
                         if (input2>-1 && input2<10){
                             oPlayer.siramLadang(input2);
@@ -115,6 +115,13 @@ public class GameEngine {
                     System.out.println("masukkan pilihan : "); input2 = in.nextInt();
                     if (input2>-1 && input2<10){
                     oPlayer.arrPetak.get(input2).status=0;
+                    }
+                    break;
+                case 5 :
+                    System.out.println("Buka Ladang No ; ");
+                    System.out.println("masukkan pilihan : "); input2 = in.nextInt();
+                    if (input2>-1 && input2<10){
+                        oPlayer.unlockPetak(input2);
                     }
                     break;
                 case 7 :

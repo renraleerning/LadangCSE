@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Player {
-    int level = 1, uang = 100, exp = 0, morexp = 200;
+    int level = 1, uang = 1000, exp = 0, morexp = 50;
     String nama;
     ArrayList<Tanaman> arrBibit = new ArrayList();
     ArrayList<Ladang> arrPetak = new ArrayList();
@@ -36,6 +36,7 @@ public class Player {
             if (arrPetak.get(index).bataslv <= level) {
                 if (arrPetak.get(index).harga <= uang) {
                     arrPetak.get(index).islocked = false;
+                    uang=uang-arrPetak.get(index).harga;
                     System.out.println("ladang berhasil dibuka");
                 }
             } else {
@@ -53,7 +54,7 @@ public class Player {
         if (morexp <= 0) {
             exp = morexp * -1;
             level++;
-            morexp = level * 500 * 2;
+            morexp = level * 100 * 2;
         }
     }
 
