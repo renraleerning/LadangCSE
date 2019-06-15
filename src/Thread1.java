@@ -25,7 +25,6 @@ public class Thread1 extends Thread {
         f.setVisible(true);
 
         Timer timer = new Timer(1000, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 refresh();

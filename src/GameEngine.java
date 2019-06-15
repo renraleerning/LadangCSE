@@ -53,7 +53,7 @@ public class GameEngine {
         MyGUI.oPlayer=oPlayer;
         Thread1 t1= new Thread1();
         Thread1.oPlayer=oPlayer;
-        t1.start();
+        //t1.start();
     }
     public void mulai () {
         Scanner in = new Scanner(System.in);
