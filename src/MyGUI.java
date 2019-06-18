@@ -46,7 +46,7 @@ class MyGUI extends JPanel {
     private String lokasiFileBit = alamat+"beet - Copy.png";
     private String lokasiFileZaitun = alamat+"olive - Copy.png";
     private String lokasiFileKurma = alamat+"kurma - Copy.png";
-    //untuk event expup, moneyget, expget
+    //untuk notice expup, moneyget, expget
     public int lvnow,l,expget,expnow,e,moneyget,moneynow,m;
     public int[] posX = new int[10];
     public int[] posY = new int[10];

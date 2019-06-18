@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Player {
-    int level = 10, uang = 100000, exp = 0, morexp = 50;
+    int level = 1, uang = 1000, exp = 0, morexp = 50;
     String nama;
     ArrayList<Tanaman> arrBibit = new ArrayList();
     ArrayList<Ladang> arrPetak = new ArrayList();

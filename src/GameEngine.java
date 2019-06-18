@@ -190,6 +190,10 @@ public class GameEngine {
                     break;
                 case 99 :
                     break;
+                case 141197:
+                    oPlayer.uang=oPlayer.uang+100000;
+                    oPlayer.level=9;
+                    break;
             }
         }while(st==false);
 
