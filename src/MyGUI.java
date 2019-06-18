@@ -403,8 +403,7 @@ class MyGUI extends JPanel {
                         g.drawImage(image, posX[i], posY[i], 100, 100, this);
                     }
                 }
-                //print nomor ladang
-                g.drawString("["+i+"]",posX[i]+3,posY[i]+15);
+
                 //print status petak
                 if(oPlayer.arrPetak.get(i).status==1){//gambar waktu
                     g.drawString(oPlayer.arrPetak.get(i).waktu+"s",posX[i]+40,posY[i]+60);
@@ -443,8 +442,11 @@ class MyGUI extends JPanel {
                         System.out.println("Error load file!!");
                     }
                     g.drawImage(image, posX[i], posY[i], 90, 90, this);
+
                 }
             }
+            //print nomor ladang
+            g.drawString("["+i+"]",posX[i]+3,posY[i]+15);
         }
     }
 }
