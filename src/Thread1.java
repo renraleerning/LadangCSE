@@ -21,7 +21,7 @@ public class Thread1 extends Thread {
         //pack semua komponen dalam panel
         f.pack();
         //set ukuran panel dalam pixel: lebar, tinggi
-        f.setSize(650,600);
+        f.setSize(650,500);
         f.setVisible(true);
 
         Timer timer = new Timer(1000, new ActionListener() {
@@ -44,24 +44,40 @@ public class Thread1 extends Thread {
         f.getContentPane().add(g);
         f.getContentPane().revalidate();
         f.repaint();
-
     }
 
     public void run() {
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+        //untuk notice penambahan uang level exp
+        if(oPlayer.exp!=g.expnow){
+            g.e=3;
+            g.expget=oPlayer.exp-g.expnow;
+            g.expnow=oPlayer.exp;
+        }
+        if (oPlayer.level!=g.lvnow){
+            g.l=3;
+            g.lvnow=oPlayer.level;
+        }
+        if (oPlayer.uang!=g.moneynow){
+            g.m=3;
+            g.moneyget=oPlayer.uang-g.moneynow;
+            g.moneynow=oPlayer.uang;
+        }
+        //pengubahan status ladang
         for (int i=0;i<10;i++){
             if (oPlayer.arrPetak.get(i).status!=0 && !oPlayer.arrPetak.get(i).islocked){
                 oPlayer.arrPetak.get(i).waktu--;
-                if (oPlayer.arrPetak.get(i).status==1 && oPlayer.arrPetak.get(i).waktu%20==0){
+                if (oPlayer.arrPetak.get(i).status==1 && oPlayer.arrPetak.get(i).waktu%20==0){//setiap 20 detik akan diserang hama atau layu
                     rand=(int)(Math.random() * ((100 - 5) + 1)) + 5;
                     if (rand>50){
-                        oPlayer.arrPetak.get(i).status=2;
+                        if (oPlayer.arrPerabot.get(0).jumlahPerabot!=1){
+                            oPlayer.arrPetak.get(i).status=2;
+                        }
+                    }else if(rand>35){
+                        if (oPlayer.arrPerabot.get(1).jumlahPerabot!=1){
+                            oPlayer.arrPetak.get(i).status=3;
+                        }
                     }
-                }else if (oPlayer.arrPetak.get(i).status==2 && oPlayer.arrPetak.get(i).waktu%20==0){
+                }else if ((oPlayer.arrPetak.get(i).status==2 || oPlayer.arrPetak.get(i).status==3) && oPlayer.arrPetak.get(i).waktu%20==0){
                     oPlayer.arrPetak.get(i).status=5;
                 }
                 if (oPlayer.arrPetak.get(i).waktu<=0&&(oPlayer.arrPetak.get(i).status==1||oPlayer.arrPetak.get(i).status==2||oPlayer.arrPetak.get(i).status==3)){

@@ -2,10 +2,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Player {
-    int level = 1, uang = 1000, exp = 0, morexp = 50;
+    int level = 10, uang = 100000, exp = 0, morexp = 50;
     String nama;
     ArrayList<Tanaman> arrBibit = new ArrayList();
     ArrayList<Ladang> arrPetak = new ArrayList();
+    ArrayList<Item> arrItem = new ArrayList();
+    ArrayList<Perabot> arrPerabot = new ArrayList();
 
     public Player(String nami) {
         nama = nami;
@@ -110,7 +112,43 @@ public class Player {
         if (arrPetak.get(indexl).status==4){
             dapatExp(arrPetak.get(indexl).exp_panen);
             uang=uang+(arrPetak.get(indexl).jumlah*arrPetak.get(indexl).hargabuah);
+            if (arrPerabot.get(2).jumlahPerabot==1){
+                uang=uang+(arrPetak.get(indexl).jumlah*arrPetak.get(indexl).hargabuah);
+            }
             arrPetak.get(indexl).status=0;
+        }
+    }
+    public void beri_fertilizer(int index1){
+        if (arrItem.get(1).jumlahItem>0&&arrPetak.get(index1).status!=0){
+            for (Tanaman t:arrBibit) {
+                if(arrPetak.get(index1).tanaman.equals(t.nama_tanaman)){
+                    arrPetak.get(index1).waktu=arrPetak.get(index1).waktu - (t.lama_panen/2);
+                    arrItem.get(1).jumlahItem--;
+                    break;
+                }
+            }
+        }else {
+            System.out.println("invalid");
+        }
+    }
+    public void beli_item(int index1){
+        arrItem.get(index1).printDeskripsiItem();
+        Scanner in = new Scanner(System.in);
+        System.out.println("\nBeli dengan jumlah : ");
+        int input;
+        input = in.nextInt();
+        if (arrItem.get(index1).harga*input<=uang) {
+            arrItem.get(index1).jumlahItem=arrItem.get(index1).jumlahItem+input;
+            uang=uang-arrItem.get(index1).harga*input;
+        } else {
+            System.out.println("Invalid");
+
+        }
+    }
+    public void beli_perabot(int index){
+        if (arrPerabot.get(index).jumlahPerabot==0 && uang>= arrPerabot.get(index).harga){
+            arrPerabot.get(index).jumlahPerabot=1;
+            uang=uang-arrPerabot.get(index).harga;
         }
     }
 }

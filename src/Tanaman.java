@@ -17,6 +17,7 @@ public class Tanaman {
     public void printTanaman(){
         System.out.println(nama_tanaman+" ("+jumlah_bibit+" bibit)");
     }
+
     public void printDeskripsi(){
         System.out.println("Nama             : "+nama_tanaman);
         System.out.println("Harga bibit      : "+hargaB);
